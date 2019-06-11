@@ -43,9 +43,11 @@ class WindowsDockerRunner(DockerRunner):
 
     def run_docker(self, image_name: str, port: int, dir_to_serv: pathlib.Path):
         assert not self._is_port_open(port)
+        p1 = dir_to_serv / "images"
+        p2 = dir_to_serv / "other"
         cmd = f"docker run -d -P --name {image_name} " + \
-              f"-v {dir_to_serv}/images:/var/www/localhost/images " \
-                  f"-v {dir_to_serv}/other:/var/www/localhost/other " + \
+              f"-v \"{p1}\":/var/www/localhost/images " \
+                  f"-v \"{p2}\":/var/www/localhost/other " + \
               f"-p {port}:80 bdlss/iipsrv-openjpeg-docker"
         print("cmd=", cmd)
         subprocess.run(cmd, shell=True)
