@@ -1,4 +1,3 @@
-import requests
 import copy
 import json
 import pathlib
@@ -126,8 +125,12 @@ def get(obj: Union[List, Dict], key: Tuple):
 
 
 def is_reachable(url):
-    response = requests.get(url)
-    return response.ok
+    try:
+        import requests
+        response = requests.get(url)
+        return response.ok
+    except:
+        pass
 
 
 def validate_many_reachable(obj, keys):
