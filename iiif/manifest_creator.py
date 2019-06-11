@@ -130,7 +130,7 @@ def is_reachable(url):
         response = requests.get(url)
         return response.ok
     except:
-        pass
+        return True
 
 
 def validate_many_reachable(obj, keys):
