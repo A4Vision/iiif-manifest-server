@@ -33,7 +33,8 @@ from iiif.iiif_server import IIIFServer
 SUFFIXES = (".tif", ".tiff")
 
 
-def main(dir_to_serve: Path, port: int):
+def main(dir_to_serve: Path, port: int=37474):
+    dir_to_serve = Path(dir_to_serve)
     server = IIIFServer(dir_to_serve, port, DockerRunner.create())
     from_dir = ManifestsFromDir(dir_to_serve, SUFFIXES)
     cache_path = dir_to_serve / ".mirador_hash_cache.pkl"
@@ -61,4 +62,5 @@ def main(dir_to_serve: Path, port: int):
 
 
 if __name__ == '__main__':
-    main(Path("/home/bugabuga/beni"), 37474)
+    main(Path(r"C:\Users\asus\Desktop\Desktop folders\GA Col 3 Tiff - Mirador test"), 37474)
+	
